@@ -73,18 +73,46 @@ df = pd.DataFrame(data)
 # print(df.head(3))
 
 
-df = pd.DataFrame({
-    "Department": ["HR", "IT", "IT", "HR", "Finance"],
-    "Salary": [50000, 70000, 80000, 55000, 60000]
-})
+# df = pd.DataFrame({
+#     "Department": ["HR", "IT", "IT", "HR", "Finance"],
+#     "Salary": [50000, 70000, 80000, 55000, 60000]
+# })
 
-# grouped = df.groupby("Department")
+# # grouped = df.groupby("Department")
 
-grouped = df.groupby("Department").agg({"Salary": ["mean", "sum",'size']})
-# grouped = df.groupby("Department").agg("size")
-print(grouped)
-
-
+# grouped = df.groupby("Department").agg({"Salary": ["mean", "sum",'size']})
+# # grouped = df.groupby("Department").agg("size")
+# print(grouped)
 
 
+# df1 = pd.DataFrame({"ID": [1, 2, 3], "Name": ["Alice", "Bob", "Charlie"]})
+# df2 = pd.DataFrame({"ID": [1, 2, 4], "Salary": [50000, 60000, 70000]})
+
+
+
+# df_merged_left = pd.merge(df1,df2, how="left" , on= "ID")
+# print(df_merged_left)
+# print()
+
+
+# df_merged_right = pd.merge(df1,df2, how="right" , on= "ID")
+# print(df_merged_right)
+print()
+
+# df_merged_inner = pd.merge(df1,df2, how="inner" , on= "ID")
+# print(df_merged_inner)
+# print()
+
+# df_merged_outer = pd.merge(df1,df2, how="outer" , on= "ID")
+# print(df_merged_outer)
+# # print()
+
+
+
+df1 = pd.DataFrame({"ID": [1, 2, 3], "Name": ["Alice", "Bob", "Charlie"]})
+df2 = pd.DataFrame({"ID": [1, 2, 4], "Salary": [50000, 60000, 70000]})
+
+
+df_concate = pd.concat([df1,df2]) #Column axis
+print(df_concate)
 
