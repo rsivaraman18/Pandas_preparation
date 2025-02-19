@@ -78,10 +78,10 @@ df = pd.DataFrame({
     "Salary": [50000, 70000, 80000, 55000, 60000]
 })
 
-grouped = df.groupby("Department")
-print(grouped)
-# grouped = df.groupby("Department").agg({"Salary": ["mean", "sum"]})
+# grouped = df.groupby("Department")
 
+grouped = df.groupby("Department").agg({"Salary": ["mean", "sum"]})
+print(grouped)
 
 
 
