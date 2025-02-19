@@ -1,6 +1,6 @@
 import pandas as pd
 data  = pd.read_csv("student_sample.csv")
-df = pd.DataFrame(data)
+dft = pd.DataFrame(data)
 
 # print(df)
 # print(df.head())
@@ -109,10 +109,38 @@ print()
 
 
 
-df1 = pd.DataFrame({"ID": [1, 2, 3], "Name": ["Alice", "Bob", "Charlie"]})
-df2 = pd.DataFrame({"ID": [1, 2, 4], "Salary": [50000, 60000, 70000]})
+# df1 = pd.DataFrame({"ID": [1, 2, 3], "Name": ["Alice", "Bob", "Charlie"]})
+# df2 = pd.DataFrame({"ID": [1, 2, 4], "Salary": [50000, 60000, 70000]})
 
 
-df_concate = pd.concat([df1,df2]) #Column axis
-print(df_concate)
+# df_concate = pd.concat([df1,df2]) #Column axis
+# print(df_concate)
+
+
+
+df = pd.DataFrame({
+    "Department": ["HR", "IT", "IT", "HR", "Finance"],
+    "Salary": [50000, 70000, 80000, 55000, 60000],
+    "Experience": [5, 7, 3, 6, 8]
+})
+
+# pivot = df.pivot_table(values="Salary", index="Department", columns="Experience", aggfunc="mean")
+# print(pivot)
+
+# #civa
+# pivot = df.pivot_table(values="Salary", index="Department", columns="Experience", aggfunc="mean")
+
+
+import pandas as pd
+
+df = pd.DataFrame({
+    "Department": ["HR", "IT", "IT", "HR", "Finance"],
+    "Salary": [50000, 70000, 80000, 55000, 60000]
+})
+
+print(df["Salary"].sum())   # Total salary
+print(df["Salary"].mean())  # Average salary
+print(df["Salary"].count()) # Count of salaries
+print(df["Salary"].max())   # Highest salary
+print(df["Salary"].min())   # Lowest salary
 
