@@ -80,7 +80,8 @@ df = pd.DataFrame({
 
 # grouped = df.groupby("Department")
 
-grouped = df.groupby("Department").agg({"Salary": ["mean", "sum"]})
+grouped = df.groupby("Department").agg({"Salary": ["mean", "sum",'size']})
+# grouped = df.groupby("Department").agg("size")
 print(grouped)
 
 
