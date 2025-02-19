@@ -1,0 +1,149 @@
+1. Read all datas from Csv File
+    import pandas as pd
+data  = pd.read_csv("student_sample.csv")
+df = pd.DataFrame(data)
+print(df)
+
+2.To see the records
+    2a.View Single Columns
+        print(df['Name'])
+
+    2b.View Multiple Columns
+        print(df[['Name','Maths']])
+
+3.This checks whether name is there in boolean format.
+    print(df['Name']=='Surya')   
+    
+    Result : 
+            False
+            False
+            True
+            False
+        
+
+4.To fetch the matching record.
+    4a.Single Name check
+        print(df[df['Name']=='Surya'])
+    
+    4b.OR Condition check
+        print(df[(df['Name'] == 'Priya') | (df['Name'] == 'Surya')])
+    
+    4c.Isin Condition
+        print(df[df['Name'].isin(['Priya', 'Surya'])])
+
+5.Detect Missing Values
+    5a.Check missing values returns boolean
+        print(df.isna())  
+        Example : True false True False of all cells
+
+    5b.Count missing values per column
+        print(df.isna().sum())   
+        Example: Name     0
+                 Maths       2
+                 Tamil       1
+                 Total       0
+
+
+6. Fill na Fill missing value
+    6a.If name missing fill as No Name if age is missing fill as No Age.
+        new_record = df.fillna({'Name':'No Name', 'Age': "No Age"})
+        print(new_record)
+
+    6b.If age is missing fill as Mean of age and if salary is missing fill with salary’s median
+        df_filled = df.fillna({"Age": df["Age"].mean(), "Salary": df["Salary"].median()})
+        print(df_filled)  
+
+    6c. If record missing add Empty Value irrespect of Collumn name
+        df_filled = df.fillna("Empty ")
+        print(df_filled)     
+
+7. Remove Rows with missing values
+    df_dropped = df.dropna()  # Drops rows where any column has NaN
+    print(df_dropped)
+
+8.Check we have Duplicates
+    print(df.duplicated()) 
+
+9. Remove Duplicates
+    df_unique = df.drop_duplicates()
+    print(df_unique)
+
+10. Rename a column
+    10a.Rename column using Name
+        df = df.rename(columns={"Name": "Full_Name", "Age": "Years"})
+        print(df)
+
+11. Rename a Column with Index Name
+    11a.Rename using Index name
+        df = df.rename(index={0: "Row_1", 1: "Row_2"})
+        print(df)
+
+12.Convert datatypes 
+
+    12a. Convert float to int
+        df["Age"] = df["Age"].astype(int) 
+
+    12b. Convert to string
+        df["Salary"] = df["Salary"].astype(str)  
+        print(df.dtypes)
+                
+13.Replace a value in a Column
+    13a.Replace the name in the Name Column
+        df["Name"] = df["Name"].replace({"Arjun": "IAM NEW", "Bob": "Robert"})
+        print(df.head(5))
+
+    13b.Replace a value anywhere in the DataFrame
+        df = df.replace({"India": "Hiii"})
+        print(df.tail(5))
+
+
+14. String Operations
+    14a.str contains
+        print(df[df["Name"].str.contains("Ramesh",na=False)])
+
+    14b.Str replace a text
+        df["Name"] = df["Name"].str.replace("Robert", "Bobby")
+    
+    14c.Split Column name
+        df[["First_Name", "Last_Name"]] = df["Full_Name"].str.split(" ", expand=True)
+        print(df)
+
+15.map(), pd.Categorical
+    15a.Map function
+        df["Category"] = df["Age"].map(lambda x: "Young" if x < 30 else "Old")
+
+    15b.Categorical data
+        df["Category"] = pd.Categorical(df["Category"])
+        print(df.dtypes)
+
+DATA TRANSFORMATION
+16.Add a Column
+    16a.Add a Column
+        df["total"] = df["Tamil"] +df["English"]
+    16b.Add columns with values
+        df["total"] = [ [100], [200], [300], [140], [160],  ]
+
+16.Remove column
+    16a.Remove Single Column    
+        df = df.drop(columns=['English'])
+
+    16b.Remove Multiple Columns
+        df = df.drop(columns=['English','Location'])
+
+17.Apply | map (only for series) | Map(For Entire dataframe)
+    17a.Apply
+        df["Age_Squared"] = df["Age"].apply(lambda x: x ** 2)
+    
+    17b.Map
+        df["Age_Category"] = df["Age"].map(lambda x: "Young" if x < 30 else "Old")
+
+    17c.Applymap - Not Important
+        df_numeric = df[["Age_Squared"]].applymap(lambda x: x / 10)  # Works on all elements
+        print(df_numeric)
+
+18.Sort Values
+    18a.Sort based on Single column
+        # df = df.sort_values("Name",ascending=False)
+
+    18b.Sort based on Multiple columns
+        df = df.sort_values(["Name","Maths"],ascending=True)
