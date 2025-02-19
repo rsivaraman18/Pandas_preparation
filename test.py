@@ -68,9 +68,20 @@ df = pd.DataFrame(data)
 # df = df.sort_values(by=["Name","Location"],ascending=False)
 
 
-df_sorted_index = df.sort_index([2])
-print(df_sorted_index)
+# df_sorted_index = df.sort_index([2])
+# print(df_sorted_index)
 # print(df.head(3))
+
+
+df = pd.DataFrame({
+    "Department": ["HR", "IT", "IT", "HR", "Finance"],
+    "Salary": [50000, 70000, 80000, 55000, 60000]
+})
+
+grouped = df.groupby("Department")
+print(grouped)
+# grouped = df.groupby("Department").agg({"Salary": ["mean", "sum"]})
+
 
 
 
